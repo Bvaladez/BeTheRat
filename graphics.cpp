@@ -158,7 +158,7 @@ void display(void)
 	{
 		glEnable(GL_DEPTH_TEST);
 		glLoadIdentity();
-		gluLookAt(-3,-3, 15, WIDTH/2, HEIGHT/2, 0, 0, 0, 1);
+		gluLookAt(-3,-3, 13, (WIDTH/2) - 1, (HEIGHT/2) - 1, 0, 0, 0, 1);
 	}
 	else if (current_view == top_view)
 	{
@@ -213,21 +213,21 @@ void SetPerspectiveView(int w, int h)
 	gluPerspective(
 		/* field of view in degree */ 38.0,
 		/* aspect ratio */ aspectRatio,
-		/* Z near */ .1, /* Z far */ 30.0);
+		/* Z near */ .1, /* Z far */ 40.0);
 	glMatrixMode(GL_MODELVIEW);
 }
 
 void SetRatView(int w, int h)
 {
 	gMaze.setView(2);
-	//glMatrixMode(GL_PROJECTION);
-	//glLoadIdentity();
-	//double aspectRatio = (GLdouble)w / (GLdouble)h;
-	//gluPerspective(
-	//	/* field of view in degree */ 38.0,
-	//	/* aspect ratio */ aspectRatio,
-	//	/* Z near */ .1, /* Z far */ 30.0);
-	//glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	double aspectRatio = (GLdouble)w / (GLdouble)h;
+	gluPerspective(
+		/* field of view in degree */ 38.0,
+		/* aspect ratio */ aspectRatio,
+		/* Z near */ .1, /* Z far */ 30.0);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 
