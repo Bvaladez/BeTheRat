@@ -38,7 +38,10 @@ void Cell::Draw3d(int x, int y)
 			glColor3ub(r, g, b);
 
 			DrawQuad(x, y, 0., x, y + 1, 0., x, y + 1, 1., x, y, 1.);
-		
+			
+
+			glColor3ub(0, 0, 0);
+			DrawQuadOutline(x, y, 0., x, y + 1, 0., x, y + 1, 1., x, y, 1.);
 		}
 		if (top) {
 		
@@ -49,7 +52,9 @@ void Cell::Draw3d(int x, int y)
 			glColor3ub(r, g, b);
 		
 			DrawQuad(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
-
+		
+			glColor3ub(0, 0, 0);
+			DrawQuadOutline(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
 		}
 		if (right && x == WIDTH-1) {
 			
@@ -61,6 +66,8 @@ void Cell::Draw3d(int x, int y)
 		
 			DrawQuad(x + 1, y + 1, 0., x + 1, y, 0., x + 1, y, 1., x + 1, y + 1, 1.);
 		
+			glColor3ub(0, 0, 0);
+			DrawQuadOutline(x + 1, y + 1, 0., x + 1, y, 0., x + 1, y, 1., x + 1, y + 1, 1.);
 		}
 		if (bottom && y == 0) {
 	
@@ -71,6 +78,9 @@ void Cell::Draw3d(int x, int y)
 			glColor3ub(r, g, b);
 	
 			DrawQuad(x, y, 0., x + 1, y, 0., x + 1, y, 1., x, y, 1.);
+
+			glColor3ub(0, 0, 0);
+			DrawQuadOutline(x, y, 0., x + 1, y, 0., x + 1, y, 1., x, y, 1.);
 		}
 
 		glColor3b(0, 0, 0);
