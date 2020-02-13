@@ -31,7 +31,7 @@ void Cell::Draw3d(int x, int y)
 		glColor3d(1, 0, 1);
 
 		if (left) {
-			int chaos = rand();
+			int chaos = 425;
 			int r = rcolorChaos(x, y, chaos);
 			int g = gcolorChaos(x, y, chaos);
 			int b = bcolorChaos(x, y, chaos);
@@ -41,11 +41,10 @@ void Cell::Draw3d(int x, int y)
 			
 
 			glColor3ub(0, 0, 0);
-			DrawQuadOutline(x, y, 0., x, y + 1, 0., x, y + 1, 1., x, y, 1.);
+			//DrawQuadOutline(x, y, 0., x, y + 1, 0., x, y + 1, 1., x, y, 1.);
 		}
 		if (top) {
-		
-			int chaos = rand();
+			int chaos = 5;
 			int r = rcolorChaos(x, y, chaos);
 			int g = gcolorChaos(x, y, chaos);
 			int b = bcolorChaos(x, y, chaos);
@@ -54,11 +53,11 @@ void Cell::Draw3d(int x, int y)
 			DrawQuad(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
 		
 			glColor3ub(0, 0, 0);
-			DrawQuadOutline(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
+			//DrawQuadOutline(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
 		}
 		if (right && x == WIDTH-1) {
 			
-			int chaos = rand();
+			int chaos = 0;
 			int r = rcolorChaos(x, y, chaos);
 			int g = gcolorChaos(x, y, chaos);
 			int b = bcolorChaos(x, y, chaos);
@@ -67,11 +66,11 @@ void Cell::Draw3d(int x, int y)
 			DrawQuad(x + 1, y + 1, 0., x + 1, y, 0., x + 1, y, 1., x + 1, y + 1, 1.);
 		
 			glColor3ub(0, 0, 0);
-			DrawQuadOutline(x + 1, y + 1, 0., x + 1, y, 0., x + 1, y, 1., x + 1, y + 1, 1.);
+			//DrawQuadOutline(x + 1, y + 1, 0., x + 1, y, 0., x + 1, y, 1., x + 1, y + 1, 1.);
 		}
 		if (bottom && y == 0) {
 	
-			int chaos = rand();
+			int chaos = 39421;
 			int r = rcolorChaos(x, y, chaos);
 			int g = gcolorChaos(x, y, chaos);
 			int b = bcolorChaos(x, y, chaos);
@@ -80,7 +79,7 @@ void Cell::Draw3d(int x, int y)
 			DrawQuad(x, y, 0., x + 1, y, 0., x + 1, y, 1., x, y, 1.);
 
 			glColor3ub(0, 0, 0);
-			DrawQuadOutline(x, y, 0., x + 1, y, 0., x + 1, y, 1., x, y, 1.);
+			//DrawQuadOutline(x, y, 0., x + 1, y, 0., x + 1, y, 1., x, y, 1.);
 		}
 
 		glColor3b(0, 0, 0);
@@ -300,12 +299,17 @@ void Maze::Draw() {
 		}
 	}
 }
+
+int Maze::getView() {
+	return mView;
+}
+
 int rcolorChaos(int x, int  y, int chaos) {
 	//int a = x + rand();
 	//int b = y + rand();
 
-	int a = x + 1;
-	int b = y + 1;
+	int a = x + chaos;
+	int b = y + chaos;
 	
 	if (x == 0) {
 		a = 1;
@@ -318,8 +322,8 @@ int rcolorChaos(int x, int  y, int chaos) {
 int gcolorChaos(int x, int  y, int chaos) {
 	//int a = x + rand();
 	//int b = y + rand();
-	int a = x + 1;
-	int b = y + 1;
+	int a = x + chaos;
+	int b = y + chaos;
 	
 	if (x == 0) {
 		a = 1;
@@ -330,8 +334,8 @@ int gcolorChaos(int x, int  y, int chaos) {
 	return (((a * 35194) + (b * 74287)) % 256) ;
 }
 int bcolorChaos(int x, int  y, int chaos) {
-	int a = x + 1;
-	int b = y + 1;
+	int a = x + chaos;
+	int b = y + chaos;
 	
 	if (x == 0) {
 		a = 1;

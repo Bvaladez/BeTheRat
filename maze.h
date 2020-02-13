@@ -25,6 +25,7 @@ public:
 	Maze();
 	
 	void setView(int view);
+	int getView();
 
 	int getEndPoint();
 	void RemoveWalls();
@@ -41,6 +42,7 @@ private:
 	Cell cells[WIDTH][HEIGHT];
 	int mStartPoint;
 	int mEndPoint;
+// 0 is top, 1 perspective, 2 rat		
 	int mView;
 	
 };

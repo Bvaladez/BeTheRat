@@ -116,11 +116,12 @@ void Mouse::drawRatInitialPos() {
 // TODO: add parameters and data members of current point so it is not drawn statically in draw rat
 void Mouse::drawRatShape() {
 
+	extern Maze gMaze;
 
-	//if (current_view == rat_view)
-	//{
-	//	return; // drawing yourself in rat view looks bad.
-	//}
+	if (gMaze.getView() == 2)
+	{
+		return; // drawing yourself in rat view looks bad.
+	}
 	
 	
 	DrawTriangle(.7, 0, -.5, .5, -.5, -.5);
@@ -149,7 +150,7 @@ void Mouse::scurryForward() {
 
 	//win Condition	
 	//if (j > HEIGHT - 1) {
-	if (i == gMaze.getEndPoint() && j == HEIGHT - 1) {
+	if (i == gMaze.getEndPoint() && j == HEIGHT - 1 && gMaze.getView() != 2) {
 		static int t = 0;
 		static double rotation = 0;
 		t += 1;

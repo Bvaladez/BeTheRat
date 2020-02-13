@@ -158,7 +158,7 @@ void display(void)
 	{
 		glEnable(GL_DEPTH_TEST);
 		glLoadIdentity();
-		gluLookAt(-3, -3, 15, WIDTH/2, HEIGHT/2, 0, 0, 0, 1);
+		gluLookAt(-3,-3, 15, WIDTH/2, HEIGHT/2, 0, 0, 0, 1);
 	}
 	else if (current_view == top_view)
 	{
