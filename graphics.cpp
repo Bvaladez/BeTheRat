@@ -76,7 +76,7 @@ void DrawLine(double x1, double y1, double x2, double y2)
 	glEnd();
 }
 
-void DrawQuad(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, double x4, double y4, double z4, double x5, double y5, double z5  )
+void DrawQuad(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, double x4, double y4, double z4)
 {
 	glBegin(GL_QUADS);
 	glVertex3d(x1, y1, z1);
@@ -91,9 +91,6 @@ void DrawQuad(double x1, double y1, double z1, double x2, double y2, double z2, 
 	
 	glVertex3d(x4, y4, z4);
 	glVertex3d(x1, y1, z1);
-	(void)x5;
-	(void)y5;
-	(void)z5;
 
 	glEnd();
 }
@@ -142,7 +139,7 @@ void display(void)
 	{
 		glEnable(GL_DEPTH_TEST);
 		glLoadIdentity();
-		gluLookAt(-3, -3, 7, 3, 3, 0, 0, 0, 1);
+		gluLookAt(-4, -4, 7, 3, 3, 0, 0, 0, 1);
 	}
 	else if (current_view == top_view)
 	{

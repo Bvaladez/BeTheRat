@@ -44,3 +44,7 @@ private:
 	int mView;
 	
 };
+
+int rcolorChaos(int x, int  y, int random);
+int gcolorChaos(int x, int  y, int random);
+int bcolorChaos(int x, int  y, int random);

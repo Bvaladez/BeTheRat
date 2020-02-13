@@ -30,17 +30,48 @@ void Cell::Draw3d(int x, int y)
 
 		glColor3d(1, 0, 1);
 
-		if (left)
-			DrawQuad(x, y, 0., x, y + 1, 0., x, y + 1, 1., x, y, 1., x, y, 0);
-		if (top)
-			DrawLine(x, y + 1, x + 1, y + 1);
-			//DrawQuad(x, y + 1, 0., x + 1, y + 1, 0.);
-		if (right)
-			DrawLine(x + 1, y + 1, x + 1, y);
-			//DrawQuad(x + 1, y + 1, 0., x + 1, y, 0.);
-		if (bottom)
-			DrawLine(x + 1, y, x, y);
-			//DrawQuad(x, y + 1, 0., x, y, 0.);
+		if (left) {
+			int chaos = rand();
+			int r = rcolorChaos(x, y, chaos);
+			int g = gcolorChaos(x, y, chaos);
+			int b = bcolorChaos(x, y, chaos);
+			glColor3ub(r, g, b);
+
+			DrawQuad(x, y, 0., x, y + 1, 0., x, y + 1, 1., x, y, 1.);
+		
+		}
+		if (top) {
+		
+			int chaos = rand();
+			int r = rcolorChaos(x, y, chaos);
+			int g = gcolorChaos(x, y, chaos);
+			int b = bcolorChaos(x, y, chaos);
+			glColor3ub(r, g, b);
+		
+			DrawQuad(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
+
+		}
+		if (right && x == WIDTH-1) {
+			
+			int chaos = rand();
+			int r = rcolorChaos(x, y, chaos);
+			int g = gcolorChaos(x, y, chaos);
+			int b = bcolorChaos(x, y, chaos);
+			glColor3ub(r, g, b);
+		
+			DrawQuad(x + 1, y + 1, 0., x + 1, y, 0., x + 1, y, 1., x + 1, y + 1, 1.);
+		
+		}
+		if (bottom && y == 0) {
+	
+			int chaos = rand();
+			int r = rcolorChaos(x, y, chaos);
+			int g = gcolorChaos(x, y, chaos);
+			int b = bcolorChaos(x, y, chaos);
+			glColor3ub(r, g, b);
+	
+			DrawQuad(x, y, 0., x + 1, y, 0., x + 1, y, 1., x, y, 1.);
+		}
 
 		glColor3b(0, 0, 0);
 
@@ -115,6 +146,7 @@ bool Maze::isSafe(double x, double y, double r){
 	if ( cells[i][j].right && xOffset + r > 1.0) {
 		//glColor3d(1, 0, 0);
 		rightWall += 1;
+			
 		//std::cout << "Hit right wall " << rightWall << std::endl;
 		return false;
 	}
@@ -258,3 +290,45 @@ void Maze::Draw() {
 		}
 	}
 }
+int rcolorChaos(int x, int  y, int chaos) {
+	//int a = x + rand();
+	//int b = y + rand();
+
+	int a = x + 1;
+	int b = y + 1;
+	
+	if (x == 0) {
+		a = 1;
+	}
+	if ( y == 0) {
+		b = 1;
+	}
+	return (((a * 32241) + (b * 43882)) % 256);
+}
+int gcolorChaos(int x, int  y, int chaos) {
+	//int a = x + rand();
+	//int b = y + rand();
+	int a = x + 1;
+	int b = y + 1;
+	
+	if (x == 0) {
+		a = 1;
+	}
+	if ( y == 0) {
+		b = 1;
+	}
+	return (((a * 35194) + (b * 74287)) % 256) ;
+}
+int bcolorChaos(int x, int  y, int chaos) {
+	int a = x + 1;
+	int b = y + 1;
+	
+	if (x == 0) {
+		a = 1;
+	}
+	if ( y == 0) {
+		b = 1;
+	}
+	return (((a * 73451) + (b * 13212)) % 256);
+}
+
