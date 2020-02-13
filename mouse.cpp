@@ -35,11 +35,19 @@ double Mouse::getY() {
 }
 
 double Mouse::getDX() {
-	return mDx;
+	double degrees = this->getRotation();
+	double radians = degrees * 3.145926 / 180.;
+	double dx = std::cos(radians);
+	return dx;
+	//return mDx;
 }
 
 double Mouse::getDY() {
-	return mDy;
+	double degrees = this->getRotation();
+	double radians = degrees * 3.145926 / 180.;
+	double dy = std::sin(radians);
+	return dy;
+	//return mDy;
 }
 
 double Mouse::getRadius() {
@@ -115,7 +123,6 @@ void Mouse::drawRatShape() {
 	//}
 	
 	
-	//DrawTriangle(this->getX() + .7, this->getY(), this->getX() - .5, this->getY() + .5, this->getX() - .5, this->getY() - .5);
 	DrawTriangle(.7, 0, -.5, .5, -.5, -.5);
 }
 
