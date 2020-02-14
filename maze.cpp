@@ -53,7 +53,7 @@ void Cell::Draw3d(int x, int y)
 			DrawQuad(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
 		
 			glColor3ub(0, 0, 0);
-			DrawQuadOutline(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
+			//DrawQuadOutline(x, y + 1, 0., x + 1, y + 1, 0., x + 1, y + 1, 1., x, y + 1, 1.);
 		}
 		if (right && x == WIDTH-1) {
 			
@@ -319,6 +319,7 @@ int rcolorChaos(int x, int  y, int chaos) {
 	}
 	return (((a * 32241) + (b * 43882)) % 256);
 }
+
 int gcolorChaos(int x, int  y, int chaos) {
 
 	int a = x + chaos;
@@ -335,6 +336,7 @@ int gcolorChaos(int x, int  y, int chaos) {
 	}
 	return (((a * 35194) + (b * 74287)) % 256) ;
 }
+
 int bcolorChaos(int x, int  y, int chaos) {
 	int a = x + chaos;
 	int b = y + chaos;

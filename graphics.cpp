@@ -158,7 +158,8 @@ void display(void)
 	{
 		glEnable(GL_DEPTH_TEST);
 		glLoadIdentity();
-		gluLookAt(-3,-3, 13, (WIDTH/2) - 1, (HEIGHT/2) - 1, 0, 0, 0, 1);
+		//good for a maze that is 10 * 10
+		gluLookAt(-3,-3, 17, (WIDTH/2) - 1, (HEIGHT/2) - 1, 0, 0, 0, 1);
 	}
 	else if (current_view == top_view)
 	{
