@@ -34,6 +34,9 @@ public:
 	int getStart();
 	bool isSafe(double x, double y, double r);
 
+	void setSuperRatMode(bool b);
+	bool getSuperRatMode();
+
 
 
 	
@@ -44,6 +47,7 @@ private:
 	int mEndPoint;
 // 0 is top, 1 perspective, 2 rat		
 	int mView;
+	bool mSuperRat = false;
 	
 };
 

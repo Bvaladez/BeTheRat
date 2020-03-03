@@ -58,6 +58,14 @@ const double Mouse::getRotation() {
 	return mRotation;
 }
 
+const double Mouse::getSpeed() {
+	return mSpeed;
+}
+
+void Mouse::setSpeed(double speed) {
+	mSpeed = speed;
+}
+
 void Mouse::addToRotation(double value) {
 	mRotation += value;
 }
@@ -129,6 +137,7 @@ void Mouse::drawRatShape() {
 
 void Mouse::scurryForward() {
 
+	extern Maze gMaze;
 
 	//double degrees = .01;
 	//double degrees = 1;
@@ -139,12 +148,14 @@ void Mouse::scurryForward() {
 	double radians = degrees * 3.145926 / 180.;
 	double dx = std::cos(radians);
 	double dy = std::sin(radians);
-	double speed = .001;
+	if(!gMaze.getSuperRatMode()){
+		this->setSpeed(.001);
+	}
+	//double speed = .001;
 
 	//DrawLine(mX - (dx * speed), mY - (dy * speed), mX, mY);
 	bool lastMoveLegalFlag = false;
 
-	extern Maze gMaze;
 	int i = this->getX();
 	int j = this->getY();
 
@@ -185,8 +196,9 @@ void Mouse::scurryForward() {
 			DrawLine(0, 0, -2, 0);
 		}
 	}
-	
+	//used for super rat mode
 
+	double speed = mSpeed;
 	
 	if (gMaze.isSafe(this->getX() + (dx * speed), this->getY() + (dy * speed), this->getRadius())) {
 		

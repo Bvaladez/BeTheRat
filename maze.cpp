@@ -128,8 +128,20 @@ int Maze::getEndPoint() {
 	return mEndPoint;
 }
 
+bool Maze::getSuperRatMode() {
+	return mSuperRat;
+}
+
+void Maze::setSuperRatMode(bool b) {
+	mSuperRat = b;
+}
+
+
+
 bool Maze::isSafe(double x, double y, double r){
-	
+	if (getSuperRatMode()) {
+		return true;
+	}
 	//throw away decimal to find current cell
 	int i = (int)x;
 	int j = (int)y;

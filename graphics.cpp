@@ -11,7 +11,7 @@
 // glut32.dll, and glut32.lib in the directory of your project.
 // OR, see GlutDirectories.txt for a better place to put them.
 
-
+#include <ctime>
 #include <cmath>
 #include <cstring>
 #include "stdlib.h" //stdlib has to be inlcuded before glut to ovveride glut exit
@@ -142,6 +142,14 @@ void DrawText(double x, double y, const char *string)
     glDisable(GL_BLEND);
 }
 
+double getTime() {
+	static clock_t start_time = clock();
+	clock_t current_time = clock();
+	double t = double(current_time - start_time) / CLOCKS_PER_SEC;
+
+	return t;
+}
+
 
 //
 // GLUT callback functions
@@ -152,6 +160,7 @@ void DrawText(double x, double y, const char *string)
 void display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
 
 	if (current_view == perspective_view)
@@ -168,9 +177,11 @@ void display(void)
 	}
 	else // current_view == rat_view
 	{
+		gMaze.setView(2);
 		glEnable(GL_DEPTH_TEST);
 		glLoadIdentity();
-		double z_level = .25;
+		//double z_level = .25;
+		double z_level = abs(sin(getTime()));
 		double x = rat.getX();
 		double y = rat.getY();
 		double dx = rat.getDX();
@@ -179,6 +190,7 @@ void display(void)
 		double at_y = y + dy;
 		double at_z = z_level;
 		gluLookAt(x, y, z_level, at_x, at_y, at_z, 0, 0, 1);
+		glutPostRedisplay();
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -234,25 +246,89 @@ void SetRatView(int w, int h)
 
 // This callback function gets called by the Glut
 // system whenever a key is pressed.
+
+void keyboardUP(unsigned char c, int x, int y) {
+	switch (c) {
+		
+		case'w':
+			glMiddleButtonDown = false;
+			break;
+		case'a':
+
+			glLeftButtonDown = false;
+			break;
+	
+		case'd':
+			glRightButtonDown = false;
+			break;
+
+	}
+
+
+}
+
+
 void keyboard(unsigned char c, int x, int y)
 {
+
 	switch (c) 
 	{
+
+
+	case'w':
+		glMiddleButtonDown = true;
+		break;
+	case'a':
+
+		glLeftButtonDown =true;
+		break;
+
+	case'd':
+		glRightButtonDown = true;
+		break;
+
+
+
 		case 27: // escape character means to quit the program
 			exit(0);
 			break;
+		//exit superRatMode
+		case 'n': 
+			if (gMaze.getSuperRatMode()) {
+
+				gMaze.setSuperRatMode(false);
+
+				if (gMaze.isSafe(rat.getX(), rat.getY(), rat.getRadius())) {
+					break;
+				}
+				else {
+
+					gMaze.setSuperRatMode(true);
+					break;
+				}
+			}
+	
+		//set SuperRatMode
+		case 's':
+			gMaze.setSuperRatMode(true);
+			rat.setSpeed(.002);
+			break;
+
 		case 'r':
 			current_view = rat_view;
 			SetPerspectiveView(screen_x, screen_y);
 			break;
+
 		case 'p':
 			current_view = perspective_view;
 			SetPerspectiveView(screen_x, screen_y);
 			break;
+
 		case 't':
 			current_view = top_view;
 			SetTopView(screen_x, screen_y);
 			break;
+
 		default:
 			return; // if we don't care, return without glutPostRedisplay()
 	}
@@ -354,6 +430,7 @@ int main(int argc, char **argv)
 
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keyboard);
+	glutKeyboardUpFunc(keyboardUP);
 	glutReshapeFunc(reshape);
 	glutMouseFunc(mouse);
 

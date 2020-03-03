@@ -16,7 +16,9 @@ public:
 	double getDY();
 	double getRadius();
 	const double getRotation();
-
+	const double getSpeed();
+	
+	void setSpeed(double speed);
 	void addToRotation(double value);
 
 	void drawRatInitialPos();
@@ -39,6 +41,7 @@ private:
 	double mDx;
 	double mDy;
 	double mRadius;
+	double mSpeed;
 };
 
 
